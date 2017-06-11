@@ -103,7 +103,11 @@ Make sure that _Internet Options_ → _Security_ has the same _Protected Mode_ s
 For a list of switches, see [this list](http://peter.sh/experiments/chromium-command-line-switches/).
 
 ```ruby
-driver = Selenium::WebDriver.for :chrome, switches: %w[--ignore-certificate-errors --disable-popup-blocking --disable-translate]
+options = Selenium::WebDriver::Chrome::Options.new
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--disable-popup-blocking')
+options.add_argument('--disable-translate')
+driver = Selenium::WebDriver.for :chrome, options: options
 ```
 
 ### Tweaking profile preferences
@@ -115,8 +119,9 @@ prefs = {
     default_directory: "/path/to/dir"
   }
 }
-
-driver = Selenium::WebDriver.for :chrome, prefs: prefs
+options = Selenium::WebDriver::Chrome::Options.new
+options.add_preference(prefs)
+driver = Selenium::WebDriver.for :chrome, options: options
 ```
 
 See [ChromeDriver documentation](https://sites.google.com/a/chromium.org/chromedriver/home).
@@ -200,8 +205,9 @@ Both implementations allow you configure the profile used.
 ```ruby
 profile = Selenium::WebDriver::Firefox::Profile.new
 profile.add_extension("/path/to/extension.xpi")
-
-driver = Selenium::WebDriver.for :firefox, profile: profile
+options = Selenium::WebDriver::Firefox::Options.new
+options.profile = profile
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 ### Using an existing profile
@@ -209,10 +215,12 @@ driver = Selenium::WebDriver.for :firefox, profile: profile
 You can use an existing profile as a template for the WebDriver profile by passing the profile name (see `firefox -ProfileManager` to set up custom profiles.)
 
 ```ruby
-driver = Selenium::WebDriver.for :firefox, profile: "my-existing-profile"
+options = Selenium::WebDriver::Firefox::Options.new
+options.profile = "my-existing-profile"
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
-If you want to use your default profile, pass `profile: "default"`
+If you want to use your default profile, pass `profile = "default"`
 
 You can also get a Profile instance for an existing profile and tweak its preferences. This does not modify the existing profile, only the one used by WebDriver.
 
@@ -220,7 +228,8 @@ You can also get a Profile instance for an existing profile and tweak its prefer
 default_profile = Selenium::WebDriver::Firefox::Profile.from_name "default"
 default_profile.assume_untrusted_certificate_issuer = false
 
-driver = Selenium::WebDriver.for :firefox, profile: default_profile
+options = Selenium::WebDriver::Firefox::Options.new(profile: default_profile)
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 ### Tweaking Firefox preferences
@@ -231,8 +240,8 @@ Use a proxy:
 profile = Selenium::WebDriver::Firefox::Profile.new
 proxy = Selenium::WebDriver::Proxy.new(http: "proxy.org:8080")
 profile.proxy = proxy
-
-driver = Selenium::WebDriver.for :firefox, profile: profile
+options = Selenium::WebDriver::Firefox::Options.new(profile: profile)
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 Automatically download files to a given folder:
@@ -243,8 +252,8 @@ profile['browser.download.dir'] = "/tmp/webdriver-downloads"
 profile['browser.download.folderList'] = 2
 profile['browser.helperApps.neverAsk.saveToDisk'] = "application/pdf"
 profile['pdfjs.disabled'] = true
-
-driver = Selenium::WebDriver.for :firefox, profile: profile
+options = Selenium::WebDriver::Firefox::Options.new(profile: profile)
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 If you are using the remote driver you can still configure the Firefox profile:
@@ -264,8 +273,9 @@ For a list of possible preferences, see [this page](http://preferential.mozdev.o
 If your Firefox executable is in a non-standard location:
 
 ```ruby
-Selenium::WebDriver::Firefox.path = "/path/to/firefox"
-driver = Selenium::WebDriver.for :firefox
+options = Selenium::WebDriver::Firefox::Options.new
+options.binary = "/path/to/firefox" 
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 ### SSL Certificates
@@ -275,8 +285,8 @@ The Legacy Firefox driver ignores invalid SSL certificates by default. If this i
 ```ruby
 profile = Selenium::WebDriver::Firefox::Profile.new
 profile.secure_ssl = true
-
-driver = Selenium::WebDriver.for :firefox, profile: profile
+options = Selenium::WebDriver::Firefox::Options.new(profile: profile)
+driver = Selenium::WebDriver.for :firefox, options: options
 ```
 
 geckodriver will not implicitly trust untrusted or self-signed TLS certificates on navigation. To override this you can do:
