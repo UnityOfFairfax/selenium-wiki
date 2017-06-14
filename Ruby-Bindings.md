@@ -114,13 +114,11 @@ driver = Selenium::WebDriver.for :chrome, options: options
 
 ```ruby
 prefs = {
-  download: {
-    prompt_for_download: false, 
-    default_directory: "/path/to/dir"
-  }
+  prompt_for_download: false, 
+  default_directory: "/path/to/dir"
 }
 options = Selenium::WebDriver::Chrome::Options.new
-options.add_preference(prefs)
+options.add_preference(:download, prefs)
 driver = Selenium::WebDriver.for :chrome, options: options
 ```
 
