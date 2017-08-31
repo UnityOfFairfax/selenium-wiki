@@ -196,7 +196,7 @@ capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(marionette: fal
 Selenium::WebDriver.for :firefox, desired_capabilities: capabilities
 ```
 
-Both implementations allow you configure the profile used.
+Both implementations allow you configure the profile used. The examples below, however, are for GeckoDriver.
 
 ### Adding an extension
 
