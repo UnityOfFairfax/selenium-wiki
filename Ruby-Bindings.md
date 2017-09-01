@@ -283,8 +283,7 @@ The Legacy Firefox driver ignores invalid SSL certificates by default. If this i
 ```ruby
 profile = Selenium::WebDriver::Firefox::Profile.new
 profile.secure_ssl = true
-options = Selenium::WebDriver::Firefox::Options.new(profile: profile)
-driver = Selenium::WebDriver.for :firefox, options: options
+driver = Selenium::WebDriver.for :firefox, profile: profile
 ```
 
 geckodriver will not implicitly trust untrusted or self-signed TLS certificates on navigation. To override this you can do:
