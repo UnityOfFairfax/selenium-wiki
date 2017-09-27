@@ -19,17 +19,6 @@ Known issues can be added to the release notes.
 
 # For Java
 
-  1. Update the Java CHANGELOG under `java/CHANGELOG`. Do this by finding the revision number of the last release and running `git log oldRev..HEAD >> java/CHANGELOG`. You'll then need to edit the file by hand.
-  1. Update the SeHQ downloads page with updated links, release numbers and dates
-  1. Run `./go clean release`
-  1. Upload the new versions of the ZIP files from "build/dist" to the downloads page. Alternatively, run `./go push_release` to have the artifacts uploaded for you.
-  1. Add a git tag: `git tag selenium-3.<REVISION> hash` where "hash" refers to the revision to tag. This creates a lightweight tag, so there's no need to add a log message. You'll need to push that change to the origin repo with `git push origin --tags`
-  1. Update the api docs. See [Update API Docs for Java and python](#update-api-docs-for-java-and-python)
-
-
-
-## Updating the Maven Repos
-
   1. Prerequisite 1: Make sure GnuPG is installed.
   1. Prerequisite 2: Make sure your `~/.m2/settings.xml` contains the following lines in the `<servers>` section:
 ```
@@ -46,12 +35,17 @@ Known issues can be added to the release notes.
 ```
   1. Prerequisite 3: Make sure your GnuPG public key is distributed to `hkp://pgp.mit.edu`
   1. Prerequisite 4: Make sure you can build Selenium
-  1. Execute `./go publish-maven`
+  1. Update the Java CHANGELOG under `java/CHANGELOG`. Do this by finding the revision number of the last release and running `git log oldRev..HEAD >> java/CHANGELOG`. You'll then need to edit the file by hand.
+  1. Add a git tag: `git tag selenium-3.<REVISION> hash` where "hash" refers to the revision to tag. This creates a lightweight tag, so there's no need to add a log message. You'll need to push that change to the origin repo with `git push origin --tags`
+  1. Run `./go clean release-java`
+  1. Update the api docs. See [Update API Docs for Java and python](#update-api-docs-for-java-and-python)
+  1. Update the SeHQ downloads page with updated links, release numbers and dates
   1. Go to http://oss.sonatype.org, log in, close the staging repository.
   1. Test the artifacts, these are the _real_ files you will be irreversibly promoting to central. You can do this easily by cloning the repo at https://github.com/SeleniumHQ/selenium-maven-release-test and following the instructions there. (Once the staging repository has been closed you get the url to the repository by clicking on the repository. This url can be added to your project pom to test if you want to test using a different project. Remember that you may need to delete the artifacts in your local repository to make sure you re-download the staged artifacts).
   1. Promote that staged release in nexus (or drop it).
   1. Make sure any other manual hacks you did are documented in step 5 or committed back on trunk.
   1. Once the artifacts finally hit central (please wait till they are actually there), update the maven downloads page on SeHQ. If you can't wait don't update the page, someone will notice and update it.
+
 
 # For .NET
 
