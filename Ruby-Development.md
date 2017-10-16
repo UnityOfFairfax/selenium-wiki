@@ -2,7 +2,7 @@
 
 This page details how to build and test the Ruby code in Selenium.
 
-# Details
+## Details
 
 The CrazyFunBuild runs on a bundled JRuby jar and is based on Rake. Use the 'go' Rake wrapper to run the targets. Unfortunately, rvm sets GEM\_HOME and causes trouble for our jruby-complete.jar. If you use rvm, you should disable it (`rvm use system`) before using the go script.
 
@@ -30,18 +30,29 @@ Build results go in the `build/rb` directory. You can play with your changes in 
 
 Using/requiring the ruby code from `rb/lib` directly is not recommended.
 
+You can build the gem with `./go //rb:gem:build`, which will place the gem in `build/`. See ReleasingSelenium for how to make a gem release.
+
 ## Testing
 
+| Command | Description |
+| --------------------- | ----------------------------- |
 | `./go //rb:unit-test` | Run unit tests for WebDriver. |
-|:----------------------------|:------------------------------|
 | `./go //rb:firefox-test` | Run integration tests for Firefox - replace "firefox" with any driver. |
 | `./go //rb:remote-firefox-test` | Run integration tests for Firefox on standalone server |
 
 Try `./go -T | grep //rb` to see all the Ruby targets.
 
-## Building
+You can also run enable debug mode by passing `log=1` to the Rake target and run a single scenario by passing `example="full name of test"`.
 
-You can build the gem with `./go //rb:gem:build`, which will place the gem in `build/`. See ReleasingSelenium for how to make a gem release.
+
+## Dependencies
+
+All Ruby dependencies are packaged in the repository. This means that you only need to have Ruby 2.0+ installed on your system to build and test Ruby bindings.
+
+On the other hand, all the dependencies versions are locked in the repository, so from time to time we need to update them. To do that, you need to perform the following:
+
+1. Switch to _minimum required Ruby version_ (see gemspec).
+2. `BUNDLE_GEMFILE="rb/Gemfile" bundle update`.
 
 ## Contributing
 
