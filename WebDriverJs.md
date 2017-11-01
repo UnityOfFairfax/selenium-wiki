@@ -10,7 +10,7 @@ new Builder()
     .then(driver => {
       return driver.get('http://www.google.com/ncr')
         .then(_ => driver.findElement(By.name('q')).sendKeys('webdriver'))
-        .then(_ => driver.findElement(By.name('btnG')).click())
+        .then(_ => driver.findElement(By.name('btnK')).click())
         .then(_ => driver.wait(until.titleIs('webdriver - Google Search'), 1000))
         .then(_ => driver.quit());
     });
@@ -27,7 +27,7 @@ let driver = new Builder()
 
 driver.get('http://www.google.com/ncr');
 driver.findElement(By.name('q')).sendKeys('webdriver');
-driver.findElement(By.name('btnG')).click();
+driver.findElement(By.name('btnK')).click();
 driver.wait(until.titleIs('webdriver - Google Search'), 1000);
 driver.quit();
 ```
@@ -87,7 +87,7 @@ describe('Google Search', function() {
   test.it('example', function theTestFunction() {
     driver.get('http://www.google.com/ncr');                          // (1)
     driver.findElement(By.name('q')).sendKeys('webdriver');           // (2)
-    driver.findElement(By.name('btnG')).click();                      // (3)
+    driver.findElement(By.name('btnK')).click();                      // (3)
     driver.wait(until.titleIs('webdriver - Google Search'), 1000);    // (4)
   });
 
@@ -124,7 +124,7 @@ describe('Google Search', function() {
     return driver.get('http://www.google.com/ncr')
         .then(_ => driver.findElement(By.name('q')))
         .then(q => q.sendKeys('webdriver'))
-        .then(_ => driver.findElement(By.name('btnG')))
+        .then(_ => driver.findElement(By.name('btnK')))
         .then(b => b.click())
         .then(_ => driver.wait(until.titleIs('webdriver - Google Search'), 1000));
   });
@@ -153,7 +153,7 @@ describe('Google Search', function() {
   test.it('example', function* theTestFunction() {
     yield driver.get('http://www.google.com/ncr');                        // (1)
     yield driver.findElement(By.name('q')).sendKeys('webdriver');         // (2)
-    yield driver.findElement(By.name('btnG')).click();                    // (3)
+    yield driver.findElement(By.name('btnK')).click();                    // (3)
     yield driver.wait(until.titleIs('webdriver - Google Search'), 1000);  // (4)
   });
 
@@ -193,7 +193,7 @@ describe('Google Search', function() {
     await driver.get('https://www.google.com/ncr');
 
     await driver.findElement(By.name('q')).sendKeys('webdriver');
-    await driver.findElement(By.name('btnG')).click();
+    await driver.findElement(By.name('btnK')).click();
 
     await driver.wait(until.titleIs('webdriver - Google Search'), 1000);
   });
@@ -247,7 +247,7 @@ let driver = new Builder()
 
 driver.get('http://www.google.com/ncr');
 driver.findElement(By.name('q')).sendKeys('webdriver');
-driver.findElement(By.name('btnG')).click();
+driver.findElement(By.name('btnK')).click();
 driver.wait(until.titleIs('webdriver - Google Search'), 1000);
 driver.quit();
 ```
