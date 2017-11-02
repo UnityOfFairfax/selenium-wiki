@@ -225,3 +225,4 @@ transcript: https://botbot.me/freenode/selenium/2016-12-21/?msg=78265715&page=6
 * 2.53.0 The FINAL RC RELEASE
 
 * 3.0 The Christmas Release! FF48 now requires GeckoDriver
+* 3.6 The "Not Released On A Friday" Release
