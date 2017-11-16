@@ -2,7 +2,7 @@
 
 # Building Selenium with Buck
 
-The easiest thing to do is to just run "./go". The build process will download the right version of Buck for you so long as there's no `.nobuckcheck` file in the root of the project. The download ends up in `$HOME/.crazyfun/buck/HASH/buck.pex` where `HASH` is the value of the current buck version (given in the `.buckversion` file in the root of the project.
+The easiest thing to do is to just run "./go". The build process will download the right version of Buck for you so long as there's no `.nobuckcheck` file in the root of the project. The download ends up in `buck-out/crazy-fun/HASH/buck.pex` where `HASH` is the value of the current buck version (given in the `.buckversion` file in the root of the project.
 
 If you'd like to build and run our fork of Buck, then:
 
