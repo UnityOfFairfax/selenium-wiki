@@ -31,7 +31,7 @@ There are more detailed instructions about how the build system works in the Cra
 
 By default, the output of the build is somewhat terse. A log of the java compilation stages is kept in "build/build\_log.xml". You can also get more verbose output by adding "log=true" to the build targets. eg:
 
-`./go //java/client/test/org/openqa/selenium/support:LargeTests:run log=true`
+`./go //java/client/test/org/openqa/selenium/support:large-tests:run log=true`
 
 Finally, you can get even more verbose logging by modifying the Rakefile and commenting out the line that reads:
 
@@ -45,20 +45,19 @@ The test logs are kept in the "build/test\_logs" folder.
 
 You'll get a long way with just:
 
-`go //java/server/src/org/openqa/selenium/remote/server:server:uber //java/client/src/org/openqa/selenium:client-combined:project`
+`go //java/server/src/org/openqa/grid/selenium:selenium //java/client/src/org/openqa/selenium:client-combined`
 
 That'll build the standalone "selenium server" jar and the client library too. The build output will tell you where the output files are being placed.
 
-You can replace that second target with:
+A shortcut for just building the standalone server is:
 
+`go selenium-server-standalone`
 
-`//java/client/src/org/openqa/selenium:client-combined:uber`
-
-The "uber" implicit targets build a single "uber jar" containing all the compiled java from the project, as well as all third party dependencies. The "project" implicit target is similar, but excludes third party dependencies.
+The `selenium.jar` output file will be located at `buck-out/gen/java/server/src/org/openqa/grid/selenium/selenium.jar`
 
 ## Sources
 
-`//java/server/src/org/openqa/grid/selenium:selenium:project-srcs` will give you some sources.
+`//java/server/src/org/openqa/grid/selenium:selenium-server-sources` will give you some sources.
 
 ## Building the Android Atoms
 `./go //javascript/android-atoms:atoms`
