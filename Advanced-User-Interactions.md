@@ -1,4 +1,4 @@
-
+**Warning: this information is related to legacy driver implementations (2.0), for W3C WebDriver compatible implementations see https://w3c.github.io/webdriver/webdriver-spec.html#actions**
 
 # Introduction
 
