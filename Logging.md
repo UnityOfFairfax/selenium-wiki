@@ -19,7 +19,7 @@ The known log types are:
 | performance     | Logs relating to the performance characteristics of the page under test (e.g. resource load timings) |
 | server           | Logs from within the selenium server. |
 
-For more information on which command to use to retrieve available log types, and a baseline of general log types, please view the [wire protocol](JsonWireProtocol.md).
+For more information on which command to use to retrieve available log types, and a baseline of general log types, please view the [wire protocol](../JsonWireProtocol).
 
 
 ## Logs
@@ -28,7 +28,7 @@ A log corresponds to a list of log entries, where each log entry is a tuple cont
 
 ### Log Levels
 
-The purpose of log levels is to provide a means to filter the messages in the log based on level of interest. For instance, if the purpose is debugging then more of less all messages may be of interest, while if the purpose is general monitoring then less information may be needed.
+The purpose of log levels is to provide a means to filter the messages in the log based on level of interest. For instance, if the purpose is debugging then more or less all messages may be of interest, while if the purpose is general monitoring then less information may be needed.
 
 For WebDriver the following log levels have been selected (ordered from highest to lowest):
 
@@ -41,7 +41,7 @@ For WebDriver the following log levels have been selected (ordered from highest 
 
 Languages like Java and Python typically provide a logging API with its own log levels, each with a name and a number, while the WebDriver log levels described above are described with names in a certain order (and no numbers). Driver implementors may use the log levels of their host language, but should translate the log levels of the host language to WebDriver log levels before sending logs over the wire.
 
-Please see the [wire protocol](JsonWireProtocol.md) for more details.
+Please see the [wire protocol](../JsonWireProtocol) for more details.
 
 ### Log Message
 
@@ -49,9 +49,9 @@ In general, a log message is just a string. Still, some log types may have a nee
 
 ## Retrieval of Logs
 
-Provided that a log type is supported, it should be possible to retrieve the corresponding log. For remote logs on a different node, retrieval involves the use of the [wire protocol](JsonWireProtocol.md). In the scenario where a log is retrieved several times the same log entries should not be retrieved more than once. For this reason, and to same memory, after each retrieval of a log the log buffer of that log is reset.
+Provided that a log type is supported, it should be possible to retrieve the corresponding log. For remote logs on a different node, retrieval involves the use of the [wire protocol](../JsonWireProtocol). In the scenario where a log is retrieved several times the same log entries should not be retrieved more than once. For this reason, and to same memory, after each retrieval of a log the log buffer of that log is reset.
 
-Please see the [wire protocol](JsonWireProtocol.md) for more details.
+Please see the [wire protocol](../JsonWireProtocol) for more details.
 
 ## Configuration of Logging Behavior
 
@@ -59,7 +59,7 @@ There may be cases where logging should be turned off entirely, or the number of
 
 The default behavior should be to collect all log messages and let the client do filtering as needed. For cases where a different log level has been configured for a log type, messages under that log level should not be collected.
 
-Please see the [capabilities page](DesiredCapabilities.md) for more information about logging configuration.
+Please see the [capabilities page](../DesiredCapabilities) for more information about logging configuration.
 
 ## Browser Specific Behavior
 
@@ -70,4 +70,4 @@ The Firefox driver provides an additional capability to configure whether the br
 
 The default behavior is to merge the logs, the reason being that the error console of the browser provides a simple way to get a merged graphical view of the joined logs.
 
-Please see the [capabilities page](DesiredCapabilities.md) for more information about Firefox specific capabilities.
+Please see the [capabilities page](../DesiredCapabilities) for more information about Firefox specific capabilities.
