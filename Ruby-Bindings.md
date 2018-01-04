@@ -289,7 +289,7 @@ driver = Selenium::WebDriver.for :firefox, profile: profile
 geckodriver will not implicitly trust untrusted or self-signed TLS certificates on navigation. To override this you can do:
 
 ```ruby
-capabilities = Selenium::WebDriver::Firefox::RemoteCapabilities.firefox(accept_insecure_certs: true)
+capabilities = Selenium::WebDriver::Firefox::Remote::Capabilities.firefox(accept_insecure_certs: true)
 driver = Selenium::WebDriver.for :firefox, desired_capabilities: :capabilities
 ```
 
