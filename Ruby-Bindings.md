@@ -339,7 +339,7 @@ Internally, WebDriver uses HTTP to communicate with a lot of the drivers (the Js
 
 ```ruby
   client = Selenium::WebDriver::Remote::Http::Default.new
-  client.timeout = 120 # seconds
+  client.read_timeout = 120 # seconds
   driver = Selenium::WebDriver.for :remote, http_client: client
 ```
 
