@@ -57,4 +57,4 @@ This is the list of ​[WebDriver commands](https://w3c.github.io/webdriver/webd
 | [Get Alert Text](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-get-alert-text) | Complete | |
 | [Send Alert Text](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-send-alert-text) | Complete | |
 | [Take Screenshot](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-take-screenshot) | Complete | |
-| [Take Element Screenshot](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-take-element-screenshot) | Not Implemented | |
+| [Take Element Screenshot](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-take-element-screenshot) | Complete | |
