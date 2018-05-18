@@ -375,7 +375,16 @@ client = Selenium::WebDriver::Remote::Http::Curb.new
 driver = Selenium::WebDriver.for :firefox, http_client: client
 ```
 
-If you have the [net-http-persistent gem](https://github.com/drbrain/net-http-persistent) installed, you can similarly use "selenium/webdriver/remote/http/persistent" to get keep-alive connections. This will significantly reduce the ephemeral ports usage of WebDriver, which is useful in [some contexts](ScalingWebDriver.md).
+## Using persistent HTTP connections
+
+If you have the [net-http-persistent gem](https://github.com/drbrain/net-http-persistent) installed, you can use it to get keep-alive connections. This will significantly reduce the ephemeral ports usage of WebDriver, which is useful in [some contexts](ScalingWebDriver.md). Keep-alive connections are also supported in ChromeDriver.
+
+```ruby
+require 'selenium/webdriver/remote/http/persistent'
+
+client = Selenium::WebDriver::Remote::Http::Persistent.new
+driver = Selenium::WebDriver.for :chrome, http_client: client
+```
 
 ## Logging
 
