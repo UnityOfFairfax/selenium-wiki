@@ -1,10 +1,10 @@
 # Selenium Grid Platforms
 
-This section describes the PLATFORM option used in configuring Selenium Grid Nodes and [[DesiredCapabilities](DesiredCapabilities.md)] object.
+This section describes the PLATFORM option used in configuring Selenium Grid Nodes and [[DesiredCapabilities](DesiredCapabilities)] object.
 
 ## History of Platforms
 
-When requesting a new WebDriver session from the Grid, user can specify the [[DesiredCapabilities](DesiredCapabilities.md)] of the remote browser. Things such as the browser name, version, and platform are among the list of options that can be specified by the test. Specifying desired.
+When requesting a new WebDriver session from the Grid, user can specify the [[DesiredCapabilities](DesiredCapabilities)] of the remote browser. Things such as the browser name, version, and platform are among the list of options that can be specified by the test. Specifying desired.
 
 The following code demonstrates the DesiredCapability of Internet Explorer, version 9, on Windows XP platform:
 
@@ -70,7 +70,7 @@ The following list demonstrates some of the Operating Systems, and what Platform
 Different platforms are grouped into "Families" of platform. For example, Win8 and XP platforms are a part of the WINDOWS family. Similarly ANDROID and LINUX are part of the UNIX family.
 
 ## Choosing Platform and Platform Family
-When setting a platform on the [[DesiredCapabilities](DesiredCapabilities.md)] object, we can set an individual platform or family of platforms. For example:
+When setting a platform on the [[DesiredCapabilities](DesiredCapabilities)] object, we can set an individual platform or family of platforms. For example:
 
 ```
   	capability.setPlatform(Platform.VISTA); //Will return a node with Windows Vista or 2008 Server or Windows 7 Operating System.
