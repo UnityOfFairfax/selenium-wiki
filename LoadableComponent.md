@@ -289,4 +289,4 @@ public class FooTest {
 }
 ```
 
-If you're using a library such as [Guiceberry](http://code.google.com/p/guiceberry/) in your tests, the preamble of setting up the PageObjects can be omitted leading to nice, clear, readable tests.
+If you're using a library such as [Guiceberry](https://github.com/zorzella/guiceberry) in your tests, the preamble of setting up the PageObjects can be omitted leading to nice, clear, readable tests.
