@@ -19,6 +19,11 @@ The server expects you to have Chrome installed in the default location for each
 
 <sup>1</sup> For Linux systems, the ChromeDriver expects /usr/bin/google-chrome to be a symlink to the actual Chrome binary. See also the section on [overriding the Chrome binary location](https://sites.google.com/a/chromium.org/chromedriver/capabilities#TOC-Using-a-Chrome-executable-in-a-non-standard-location) .
 
+## Quick installation
+
+* Mac users with Homebrew installed: `brew install chromedriver`
+* Debian based Linux distros: `sudo apt-get install chromium-chromedriver`
+
 ## Getting Started
 
 **Read [ChromeDriver user documentation](https://sites.google.com/a/chromium.org/chromedriver/home)**
