@@ -23,6 +23,7 @@ The server expects you to have Chrome installed in the default location for each
 
 * Mac users with Homebrew installed: `brew install chromedriver`
 * Debian based Linux distros: `sudo apt-get install chromium-chromedriver`
+* Windows users with Chocolatey installed: `choco install chromedriver`
 
 ## Getting Started
 
