@@ -4,8 +4,10 @@
 
 For all versions of WebDriver:
 
-  * The Java JDK 8 or above (download it from [Oracle's site](http://www.oracle.com/technetwork/java/javase/downloads/index.html) if it's not already on your computer)
-  * The source code (you may need to CheckOut the source from source control)
+  * The Java JDK 8 (note that versions 9 & 10 are not currently supported for building Selenium). Download it from [Oracle's site](http://www.oracle.com/technetwork/java/javase/downloads/index.html) if it's not already on your computer.
+  * Python 2.7 (note that Python 3.x is not currently supported for building Selenium).
+  * The source code can be forked and/or cloned from the 
+[GitHub repository](https://github.com/SeleniumHQ/selenium). Note that the repository is several gigabytes, so if you are space or bandwidth limited consider making a [shallow clone](https://git-scm.com/docs/git-clone#git-clone---depthltdepthgt).
 
 In addition, the InternetExplorerDriver needs some additional components and can only be fully built on Windows
 
