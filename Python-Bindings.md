@@ -110,19 +110,19 @@ By default, running `tox` will attempt to execute all of the defined environment
 As an example, this command will run the tests for Firefox against python 2.7:
 
 ```
-tox -e py27-firefox
+tox -e py27-marionette
 ```
 
 The tests are executed using [pytest](http://docs.pytest.org/), and you can pass positional arguments through Tox by specifying `--` before them. In addition to other things, this allows you to filter tests. For example, to run a single test file:
 
 ```
-tox -e py27-firefox -- py/test/selenium/webdriver/common/visibility_tests.py
+tox -e py27-marionette -- py/test/selenium/webdriver/common/visibility_tests.py
 ```
 
 To run a single test, you can use the keyword filter, such as:
 
 ```
-tox -e py27-firefox -- -k testShouldShowElementNotVisibleWithHiddenAttribute
+tox -e py27-marionette -- -k testShouldShowElementNotVisibleWithHiddenAttribute
 ```
 
 ### Expected Failures
@@ -162,7 +162,7 @@ We also recommend against using [skip](http://docs.pytest.org/en/latest/skipping
 To run expected failures locally, pass the `--runxfail` command line option to pytest. If you want to run all expected failures for a specific driver you can do this by filtering on the xfail mark:
 
 ```
-tox -e py27-firefox -- -m xfail_firefox --runxfail
+tox -e py27-marionette -- -m xfail_marionette --runxfail
 ```
 
 ## Releases
