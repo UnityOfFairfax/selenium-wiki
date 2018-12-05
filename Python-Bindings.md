@@ -99,6 +99,16 @@ cd py
 python setup.py install
 ```
 
+## Style
+
+### Code Style
+
+Code should adhere to [Flake8](http://flake8.pycqa.org/en/latest/) with the exception of `E501`.
+
+### Docstring Style
+
+Docstrings should adhere to [PEP257](https://www.python.org/dev/peps/pep-0257/). Arguments, return values, exceptions, etc should use [reStructuredText](http://docutils.sourceforge.net/rst.html).
+
 ## Tests
 
 When developing Selenium, it is recommended you run the tests before and after making any changes to the code base. To perform these tests, you will first need to install [Tox](http://tox.readthedocs.io/).
