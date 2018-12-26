@@ -10,12 +10,12 @@ This is very much work in progress at the moment, and the set of HTML tags that 
 
   * Extend `HamcrestWebDriverTestCase`
   * Implement the `createDriver()` method to select a WebDriver implementation
-  * Use verbs like goTo(...) or clickOn(...) to navigate pages
-  * Use assertPresenceOf(...) to test the current page
-  * Use _Finder\_s to identify different elements in the page
-  * Use_Matcher\_s to test conditions of elements (mix webdriver and hamcrest at will)
+  * Use verbs like `goTo(...)` or `clickOn(...)` to navigate pages
+  * Use `assertPresenceOf(...)` to test the current page
+  * Use `Finder`s to identify different elements in the page
+  * Use `Matcher`s to test conditions of elements (mix webdriver and hamcrest at will)
 
-```
+```java
 package org.openqa.selenium.lift;
 
 import static org.openqa.selenium.lift.Finders.*;

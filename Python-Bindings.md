@@ -1,10 +1,10 @@
 # Installation
 
-Selenium officially supports python 2.7 and 3.6, however other versions should also work.
+Selenium officially supports Python 2.7 and 3.6. However, other versions should also work.
 
 The latest official release is available on the [Python Package Index](http://python.org/pypi/selenium). It's a good practice to install python packages into [virtual environments](https://packaging.python.org/installing/#creating-and-using-virtual-environments) rather than in your global site packages. To install this using [pip](https://pip.pypa.io/en/stable/installing/), run the following command:
 
-```
+```sh
 pip install selenium
 ```
 
@@ -93,7 +93,7 @@ To reflect pythonic behavior of flat object hierarchies the python bindings e.g.
 
 To install the latest unreleased version, [clone](https://help.github.com/articles/cloning-a-repository/) https://github.com/SeleniumHQ/selenium and run the following commands from the repository root directory:
 
-```
+```sh
 ./go py_prep_for_install_release
 cd py
 python setup.py install
@@ -119,19 +119,19 @@ By default, running `tox` will attempt to execute all of the defined environment
 
 As an example, this command will run the tests for Firefox against python 2.7:
 
-```
+```sh
 tox -e py27-marionette
 ```
 
 The tests are executed using [pytest](http://docs.pytest.org/), and you can pass positional arguments through Tox by specifying `--` before them. In addition to other things, this allows you to filter tests. For example, to run a single test file:
 
-```
+```sh
 tox -e py27-marionette -- py/test/selenium/webdriver/common/visibility_tests.py
 ```
 
 To run a single test, you can use the keyword filter, such as:
 
-```
+```sh
 tox -e py27-marionette -- -k testShouldShowElementNotVisibleWithHiddenAttribute
 ```
 
@@ -148,7 +148,7 @@ def test_something(driver):
    assert something is True
 ```
 
-All of the same arguments from pytest's [xfail mark](http://docs.pytest.org/en/latest/skipping.html#mark-a-test-function-as-expected-to-fail) are available to these extended marks. Wherever possible you should provide a `reason` with a reference to the raised issue/bug. If the test raises an unexpected exception you should also provide the `raises` argument, as this will still cause a failure if the test starts failing for another reason.
+All of the same arguments from `pytest`'s [xfail mark](http://docs.pytest.org/en/latest/skipping.html#mark-a-test-function-as-expected-to-fail) are available to these extended marks. Wherever possible you should provide a `reason` with a reference to the raised issue/bug. If the test raises an unexpected exception you should also provide the `raises` argument, as this will still cause a failure if the test starts failing for another reason.
 
 If the expected failure is dependent on the platform, you should also include the `condition` argument so that the test will be allowed to pass on other environments. For example, to mark a test as expected to fail when run against Firefox on macOS:
 
@@ -160,18 +160,18 @@ from selenium.common.exceptions import WebDriverException
 @pytest.mark.xfail_firefox(
     condition=sys.platform == 'darwin',
     reason='https://myissuetracker.com/issue?id=1234',
-    raises=WebDriverException
+    raises=WebDriverException)
 def test_something(driver):
    assert something is True
 ```
 
 You should avoid using [imperative xfail](http://docs.pytest.org/en/latest/skipping.html#imperative-xfail-from-within-a-test-or-setup-function) as these will never allow the test an opportunity to unexpectedly pass (when the issue is resolved).
 
-We also recommend against using [skip](http://docs.pytest.org/en/latest/skipping.html#marking-a-test-function-to-be-skipped) unless there is good reason. If your test failure causes a hang or some other undesirable side-effect you can pass `run=False` to the xfail mark.
+We also recommend against using [`skip`](http://docs.pytest.org/en/latest/skipping.html#marking-a-test-function-to-be-skipped) unless there is good reason. If your test failure causes a hang or some other undesirable side-effect, you can pass `run=False` to the `xfail` mark.
 
-To run expected failures locally, pass the `--runxfail` command line option to pytest. If you want to run all expected failures for a specific driver you can do this by filtering on the xfail mark:
+To run expected failures locally, pass the `--runxfail` command line option to `pytest`. If you want to run all expected failures for a specific driver you can do this by filtering on the `xfail` mark:
 
-```
+```sh
 tox -e py27-marionette -- -m xfail_marionette --runxfail
 ```
 
@@ -181,6 +181,6 @@ To perform a release you will need to be a maintainer of the package on PyPI. Be
 
 When you're ready, the release can be made by running the following command:
 
-```
+```sh
 ./go py_release
 ```

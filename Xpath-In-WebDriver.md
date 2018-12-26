@@ -4,9 +4,9 @@ At a high level, WebDriver uses a browser's native XPath capabilities wherever p
 
 | **Driver** | **Tag and Attribute Names** | **Attribute Values** | **Native XPath Support** |
 |:-----------|:----------------------------|:---------------------|:-------------------------|
-| HtmlUnitDriver | Lower-cased                 | As they appear in the HTML | Yes                      |
-| InternetExplorerDriver | Lower-cased                 | As they appear in the HTML | No                       |
-| FirefoxDriver | Case insensitive            | As they appear in the HTML | Yes                      |
+| `HtmlUnitDriver` | Lower-cased                 | As they appear in the HTML | Yes                      |
+| `InternetExplorerDriver` | Lower-cased                 | As they appear in the HTML | No                       |
+| `FirefoxDriver` | Case insensitive            | As they appear in the HTML | Yes                      |
 
 This is a little abstract, so for the following piece of HTML:
 
@@ -19,9 +19,9 @@ The following will happen:
 
 | **XPath expression** | **Number of Matches In** | | | |
 |:---------------------|:-------------------------|:|:|:|
-|                      | **HtmlUnitDriver**       | **FirefoxDriver** | **InternetExplorerDriver** |
-| //input              | 1 ("example")            | 2 | 2 |
-| //INPUT              | 0                        | 2 | 0 |
+|                      | **`HtmlUnitDriver`**       | **`FirefoxDriver`** | **`InternetExplorerDriver`** |
+| `//input`              | 1 ("example")            | 2 | 2 |
+| `//INPUT`              | 0                        | 2 | 0 |
 
 ## Matching Implicit Attributes
 

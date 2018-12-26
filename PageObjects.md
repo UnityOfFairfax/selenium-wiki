@@ -4,13 +4,13 @@ Within your web app's UI there are areas that your tests interact with. A Page O
 
 ## Implementation Notes
 
-PageObjects can be thought of as facing in two directions simultaneously. Facing towards the developer of a test, they represent the **services** offered by a particular page. Facing away from the developer, they should be the only thing that has a deep knowledge of the structure of the HTML of a page (or part of a page) It's simplest to think of the methods on a Page Object as offering the "services" that a page offers rather than exposing the details and mechanics of the page. As an example, think of the inbox of any web-based email system. Amongst the services that it offers are typically the ability to compose a new email, to choose to read a single email, and to list the subject lines of the emails in the inbox. How these are implemented shouldn't matter to the test.
+`PageObject`s can be thought of as facing in two directions simultaneously. Facing towards the developer of a test, they represent the **services** offered by a particular page. Facing away from the developer, they should be the only thing that has a deep knowledge of the structure of the HTML of a page (or part of a page) It's simplest to think of the methods on a Page Object as offering the "services" that a page offers rather than exposing the details and mechanics of the page. As an example, think of the inbox of any web-based email system. Amongst the services that it offers are typically the ability to compose a new email, to choose to read a single email, and to list the subject lines of the emails in the inbox. How these are implemented shouldn't matter to the test.
 
-Because we're encouraging the developer of a test to try and think about the services that they're interacting with rather than the implementation, PageObjects should seldom expose the underlying WebDriver instance. To facilitate this, methods on the PageObject should return other PageObjects. This means that we can effectively model the user's journey through our application. It also means that should the way that pages relate to one another change (like when the login page asks the user to change their password the first time they log into a service, when it previously didn't do that) simply changing the appropriate method's signature will cause the tests to fail to compile. Put another way, we can tell which tests would fail without needing to run them when we change the relationship between pages and reflect this in the PageObjects.
+Because we're encouraging the developer of a test to try and think about the services that they're interacting with rather than the implementation, `PageObject`s should seldom expose the underlying WebDriver instance. To facilitate this, methods on the `PageObject` should return other `PageObject`s. This means that we can effectively model the user's journey through our application. It also means that should the way that pages relate to one another change (like when the login page asks the user to change their password the first time they log into a service, when it previously didn't do that) simply changing the appropriate method's signature will cause the tests to fail to compile. Put another way, we can tell which tests would fail without needing to run them when we change the relationship between pages and reflect this in the `PageObject`s.
 
-One consequence of this approach is that it may be necessary to model (for example) both a successful and unsuccessful login, or a click could have a different result depending on the state of the app. When this happens, it is common to have multiple methods on the PageObject:
+One consequence of this approach is that it may be necessary to model (for example) both a successful and unsuccessful login, or a click could have a different result depending on the state of the app. When this happens, it is common to have multiple methods on the `PageObject`:
 
-```
+```java
 public class LoginPage {
     public HomePage loginAs(String username, String password) {
         // ... clever magic happens here
@@ -28,7 +28,7 @@ public class LoginPage {
 
 The code presented above shows an important point: the tests, not the PageObjects, should be responsible for making assertions about the state of a page. For example:
 
-```
+```java
 public void testMessagesAreReadOrUnread() {
     Inbox inbox = new Inbox(driver);
     inbox.assertMessageWithSubjectIsUnread("I like cheese");
@@ -38,7 +38,7 @@ public void testMessagesAreReadOrUnread() {
 
 could be re-written as:
 
-```
+```java
 public void testMessagesAreReadOrUnread() {
     Inbox inbox = new Inbox(driver);
     assertTrue(inbox.isMessageWithSubjectIsUnread("I like cheese"));
@@ -46,22 +46,22 @@ public void testMessagesAreReadOrUnread() {
 }
 ```
 
-Of course, as with every guideline there are exceptions, and one that is commonly seen with PageObjects is to check that the WebDriver is on the correct page when we instantiate the PageObject. This is done in the example below.
+Of course, as with every guideline there are exceptions, and one that is commonly seen with `PageObject`s is to check that the WebDriver is on the correct page when we instantiate the `PageObject`. This is done in the example below.
 
-Finally, a PageObject need not represent an entire page. It may represent a section that appears many times within a site or page, such as site navigation. The essential principle is that there is only one place in your test suite with knowledge of the structure of the HTML of a particular (part of a) page.
+Finally, a `PageObject` need not represent an entire page. It may represent a section that appears many times within a site or page, such as site navigation. The essential principle is that there is only one place in your test suite with knowledge of the structure of the HTML of a particular (part of a) page.
 
 ## Summary
 
   * The public methods represent the services that the page offers
   * Try not to expose the internals of the page
   * Generally don't make assertions
-  * Methods return other PageObjects
+  * Methods return other `PageObject`s
   * Need not represent an entire page
   * Different results for the same action are modelled as different methods
 
 ## Example
 
-```
+```java
 public class LoginPage {
     private final WebDriver driver;
 
@@ -136,4 +136,4 @@ public class LoginPage {
 
 ## Support in WebDriver
 
-There is a PageFactory in the support package that provides support for this pattern, and helps to remove some boiler-plate code from your Page Objects at the same time.
+There is a `PageFactory` in the support package that provides support for this pattern, and helps to remove some boiler-plate code from your Page Objects at the same time.

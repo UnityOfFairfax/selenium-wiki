@@ -1,10 +1,10 @@
 # Remote WebDriver
 
-This is information about using the client implementation of the RemoteWebDriver. This is the code that is used within your tests. For information on how to set up the server-side, please take a look at the RemoteWebDriverServer page.
+This is information about using the client implementation of the `RemoteWebDriver`. This is the code that is used within your tests. For information on how to set up the server-side, please take a look at the `RemoteWebDriverServer` page.
 
 ## Installing
 
-Download the "selenium-server.zip" and unpack. Put the JARs on the CLASSPATH. This will give you the remote webdriver client, which is generally what you need. Please consult the RemoteWebDriverServer for information on how to set up the server-side of the remote webdriver.
+Download the `selenium-server.zip` and unpack. Put the JARs on the <var>CLASSPATH</var>. This will give you the remote webdriver client, which is generally what you need. Please consult the `RemoteWebDriverServer` for information on how to set up the server-side of the remote webdriver.
 
 ## Pros
 
@@ -21,7 +21,7 @@ Download the "selenium-server.zip" and unpack. Put the JARs on the CLASSPATH. Th
 
 This is probably best demonstrated with some code:
 
-```
+```java
 // We could use any driver for our tests...
 DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -41,7 +41,7 @@ driver.get("http://www.google.com");
 
 One nice feature of the remote webdriver is that exceptions often have an attached screen shot, encoded as a Base64 PNG. In order to get this screenshot, you need to write code similar to:
 
-```
+```java
 public String extractScreenShot(WebDriverException e) {
   Throwable cause = e.getCause();
   if (cause instanceof ScreenshotException) {
@@ -51,11 +51,11 @@ public String extractScreenShot(WebDriverException e) {
 }
 ```
 
-## RemoteWebDriver Modes
+## `RemoteWebDriver` Modes
 
 The remote webdriver comes in two flavours:
 
-  * **Client mode**: where the language bindings connect to the remote instance. This is the way that the FirefoxDriver, OperaDriver and the RemoteWebDriver client normally work.
-  * **Server mode**: where the language bindings are responsible for setting up the server, which the driver running in the browser can connect to. The ChromeDriver works in this way.
+  * **Client mode**: where the language bindings connect to the remote instance. This is the way that the `FirefoxDriver`, `OperaDriver`, and the `RemoteWebDriver` client normally work.
+  * **Server mode**: where the language bindings are responsible for setting up the server, which the driver running in the browser can connect to. The `ChromeDriver` works in this way.
 
 We realise that these terms are confusing, so please feel free to suggest something better!

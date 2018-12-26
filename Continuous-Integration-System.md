@@ -20,7 +20,7 @@ Planned:
 
 # SSH Settings
 
-If you wish to be able to access the VMs, you'll need direct SSH access to the host server. Ask PatrickLightbody or Adam Goucher for an account, which you can use to SSH in to xserve.openqa.org. We recommend the following entry in your .ssh/config, as it'll make connecting to the VMs much easier:
+If you wish to be able to access the VMs, you'll need direct SSH access to the host server. Ask PatrickLightbody or Adam Goucher for an account, which you can use to SSH into `xserve.openqa.org`. We recommend the following entry in your `.ssh/config`, as it'll make connecting to the VMs much easier:
 
 ```
 Host qax
@@ -37,7 +37,7 @@ Host qax
 	LocalForward 3400 192.168.25.130:3389
 ```
 
-If you need to access the main xserve ui (for instance, to play with VMWare) you will want to add this as well. Most do not need to do this though.
+If you need to access the main XServe UI (for instance, to play with VMWare) you will want to add this as well. Most do not need to do this though.
 
 ```
 	# main
@@ -46,36 +46,36 @@ If you need to access the main xserve ui (for instance, to play with VMWare) you
 
 # Host Details
 
-Bamboo is running on the host server as the user **admin**. Once SSH'd in to your personal account (using the above SSH config, ideally), you can switch over to this account with the following command:
+Bamboo is running on the host server as the user **`admin`**. Once SSH'd in to your personal account (using the above SSH config, ideally), you can switch over to this account with the following command:
 
-```
+```sh
 sudo su - admin
 ```
 
-To control bamboo itself you use the **/Applications/Bamboo/bamboo.sh** script which is a standard sys v one so start, stop, etc. are all supported.
+To control bamboo itself you use the **`/Applications/Bamboo/bamboo.sh`** script which is a standard sys v one so start, stop, etc. are all supported.
 
-There is another important user to be aware of: **admin**. This user's password is stored locally on the server at /var/root/ADMIN\_PASSWORD and can be read by switching to root from your user account (ie: sudo su - ) and then reading that file.
+There is another important user to be aware of: **`admin`**. This user's password is stored locally on the server at `/var/root/ADMIN\_PASSWORD` and can be read by switching to root from your user account (ie: `sudo su -` ) and then reading that file.
 
-Armed with that password, if you need to interact with the actual OS X desktop, you can do so by VNC'ing in to xserve.openqa.org with the username **admin** and that password.
+Armed with that password, if you need to interact with the actual OS X desktop, you can do so by VNC'ing in to xserve.openqa.org with the username **`admin`** and that password.
 
-Once restarted, you need to also manually [re](re.md)connect all the agents to the server.
+Once restarted, you need to also manually [`re`](re.md)connect all the agents to the server.
 
 # VM Details
 
 More often, you'll want to log directly in to the VMs to perform maintenance on them. Using the SSH configuration supplied above, you connect to the VMs like so:
 
   * Windows XP VM
-    * Remote Desktop to localhost:3399 with the username **Administrator** and the standard OpenQA password.
+    * Remote Desktop to `localhost:3399` with the username **`Administrator`** and the standard OpenQA password.
   * Windows Vista
-    * Remote Desktop to localhost:3400 with the username **openqa** and the standard OpenQA password.
+    * Remote Desktop to `localhost:3400` with the username **`openqa`** and the standard OpenQA password.
   * OS X 10.5 Server
-    * VNC to 5910 (display port 10) with username **openqa** and the standard OpenQA password.
-    * SSH to localhost port 1122 with the username openqa and the standard OpenQA password.
+    * VNC to `5910` (display port `10`) with username **`openqa`** and the standard OpenQA password.
+    * SSH to `localhost` port `1122` with the username **`openqa`** and the standard OpenQA password.
   * Ubuntu
-    * VNC to 5911 (display port 11) with the standard OpenQA password.
-    * SSH to localhost port 1123 with the username openqa and the standard OpenQA password.
+    * VNC to `5911` (display port `11`) with the standard OpenQA password.
+    * SSH to `localhost` port `1123` with the username **`openqa`** and the standard OpenQA password.
 
-Note: the "standard OpenQA password" can be obtained by talking to PatrickLightbody or any other developer who already has access.
+**Note:** The "standard OpenQA password" can be obtained by talking to PatrickLightbody or any other developer who already has access.
 
 # Build Server
 
@@ -83,6 +83,6 @@ Anyone currently can access build artifacts or see the state of the world inside
 
 # Agents
 
-All build VMs run a small java program called the build agent that takes instructions from the main server and send back build results and artifacts. These need to be started by hand when the machine restarts. Each of the machines has an agent.sh or agent.bat on them; typically in c:\bamboo or /home/admin/bamboo-agent or something very similar.
+All build VMs run a small Java program called the <dfn>build agent</dfn>, which takes instructions from the main server and send back build results and artifacts. These need to be started by hand when the machine restarts. Each of the machines has an `agent.sh` or `agent.bat` on them; typically in `C:\bamboo` or `/home/admin/bamboo-agent` or something very similar.
 
-There are actually two agent jars that can be used. The most common one is the 'installer' and has a restart-if-not-responding wrapper included. If that one is causing issues, there is one available on the build server agent download page that does not have it.
+There are actually two agent jars that can be used. The most common one is the `installer` and has a restart-if-not-responding wrapper included. If that one is causing issues, there is one available on the build server agent download page that does not have it.

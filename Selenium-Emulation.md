@@ -3,7 +3,7 @@
 ## Backing Selenium with WebDriver
 The Java and .NET versions of WebDriver provide implementations of the existing Selenium API. In Java, it is used like so:
 
-```
+```java
 // You may use any WebDriver implementation. Firefox is used here as an example
 WebDriver driver = new FirefoxDriver();
 
@@ -34,7 +34,7 @@ WebDriver driverInstance = ((WebDriverBackedSelenium) selenium).getUnderlyingWeb
   * Does not implement every method
     * But we'd love feedback!
   * Does also emulate Selenium Core
-    * So more advanced Selenium usage (that is, using "browserbot" or other built-in Javascript methods from Selenium Core) may need work
+    * So more advanced Selenium usage (that is, using `browserbot` or other built-in Javascript methods from Selenium Core) may need work
   * Some methods may be slower due to underlying implementation differences
   * Does not support Selenium's "user extensions" (_i.e._, user-extensions.js)
 
@@ -47,7 +47,8 @@ This is more similar to WebDriver's behaviour - as creating a Driver instance st
 Starting with release 2.19, `WebDriverBackedSelenium` can be used from any language supported by WebDriver and Selenium.
 
 For example, in Python:
-```
+
+```python
 driver = RemoteWebDriver(desired_capabilities = DesiredCapabilities.FIREFOX)
 selenium = DefaultSelenium('localhost', '4444', '*webdriver', 'http://www.google.com')
 selenium.start(driver = driver)
@@ -58,8 +59,8 @@ Provided you keep a reference to the original WebDriver and Selenium objects you
 In languages where DefaultSelenium doesn't have `start(driver)`, you can connect the WebDriver and Selenium objects together yourself, by supplying the WebDriver session ID to the Selenium object.
 
 For example, in C#:
-```
 
+```csharp
 RemoteWebDriver driver = new RemoteWebDriver(DesiredCapabilities.Firefox());
 string sessionId = (string) driver.Capabilities.GetCapability("webdriver.remote.sessionid");
 DefaultSelenium selenium = new DefaultSelenium("localhost", 4444, "*webdriver", "http://www.google.com");
@@ -68,9 +69,9 @@ selenium.Start("webdriver.remote.sessionid=" + sessionId);
 
 ## Backing WebDriver with Selenium
 
-WebDriver doesn't support as many browsers as Selenium does, so in order to provide that support while still using the webdriver API, you can make use of the `SeleneseCommandExecutor` It is done like this:
+WebDriver doesn't support as many browsers as Selenium does, so in order to provide that support while still using the webdriver API, you can make use of the `SeleneseCommandExecutor`. It is done like this:
 
-```
+```java
 Capabilities capabilities = new DesiredCapabilities()
 capabilities.setBrowserName("safari");
 CommandExecutor executor = new SeleneseCommandExecutor("http:localhost:4444/", "http://www.google.com/", capabilities);

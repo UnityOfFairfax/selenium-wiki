@@ -11,20 +11,23 @@ There are two ways to make use of the automation atoms.
   1. Using Google Closure
   1. As compiled fragments
 
-The first of these approaches is useful when constructing a monolithic application, such as Selenium Core. The second approach is used in those drivers that are implemented natively and wish to use the atoms to interrogate the DOM (such as the InternetExplorerDriver).
+The first of these approaches is useful when constructing a monolithic application, such as Selenium Core. The second approach is used in those drivers that are implemented natively and wish to use the atoms to interrogate the DOM (such as the `InternetExplorerDriver`).
 
 ## Testing Atoms
 
 If you're developing the Atoms, then the easiest way to test them is:
 
-```
+```sh
 # Start the server
 ./go debug-server &
 ```
 
-Now point a browser at http://localhost:2310/javascript/atoms/test and select the test you'd like to run. As you edit the atoms, so long as you don't change the "goog.require" or "goog.provides" statements then you can just refresh the page to see the tests run with your changes. If you do change either of those settings, kill the server and then run
+Now point a browser at `http://localhost:2310/javascript/atoms/test` and select the test you'd like to run. 
+As you edit the atoms, so long as you don't change the `goog.require` or `goog.provides` statements, then you can just refresh the page to see the tests run with your changes. 
 
-```
+If you do change either of those settings, kill the server and then run
+
+```sh
 ./go calcdeps
 ./go debug-server &
 ```
@@ -35,21 +38,21 @@ Each of the atoms listed here is exposed via the list **method name**, which del
 
 | **Method Name** | **Description** | **Implementation Method** |
 |:----------------|:----------------|:--------------------------|
-| clear           |                 |
-| click           |                 |
-| executeScript   |                 |
-| findElement     | Find the first matching element in the DOM | bot.locators.findElement  |
-| findElements    | Find all matching elements in the DOM | bot.locators.findElements |
-| fire            | Fire a specific, synthesized event | bot.events.fire           |
-| getAttribute    | Get the value of an attribute or property of an element | bot.dom.getAttribute      |
-| getLocation     | Get the absolute location of an element in the DOM | bot.dom.getLocation       |
-| getSize         | Get the size of an element | bot.dom.getSize           |
-| isDisplayed     |                 |
-| isEnabled       |                 |
-| isSelected      | Would a user consider this element selected? | bot.dom.isSelected        |
-| setSelected     |                 |
-| submit          |                 |
-| toggle          |                 |
-| type            |                 |
+| `clear`           |                 |
+| `click`           |                 |
+| `executeScript`   |                 |
+| `findElement`     | Find the first matching element in the DOM | bot.locators.findElement  |
+| `findElements`    | Find all matching elements in the DOM | bot.locators.findElements |
+| `fire`            | Fire a specific, synthesized event | bot.events.fire           |
+| `getAttribute`    | Get the value of an attribute or property of an element | bot.dom.getAttribute      |
+| `getLocation`     | Get the absolute location of an element in the DOM | bot.dom.getLocation       |
+| `getSize`         | Get the size of an element | bot.dom.getSize           |
+| `isDisplayed`     |                 |
+| `isEnabled`       |                 |
+| `isSelected`      | Would a user consider this element selected? | bot.dom.isSelected        |
+| `setSelected`     |                 |
+| `submit`          |                 |
+| `toggle`          |                 |
+| `type`            |                 |
 
 The canonical list of atoms that are implemented for the webdriver APIs are located in this [build file](https://github.com/SeleniumHQ/selenium/blob/master/javascript/webdriver/atoms/build.desc). The names of the `js_fragment` rules relate to the names of the methods.

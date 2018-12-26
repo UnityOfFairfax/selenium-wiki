@@ -1,12 +1,12 @@
-- [Why am I getting a NoSuchElementException](#orgopenqaseleniumnosuchelementexception)?
-- [Why am I getting a StaleElementReferenceException](#orgopenqaseleniumstaleelementreferenceexception)
+- [Why am I getting a `NoSuchElementException`](#orgopenqaseleniumnosuchelementexception)?
+- [Why am I getting a `StaleElementReferenceException`](#orgopenqaseleniumstaleelementreferenceexception)
   
   
   
   
-### org.openqa.selenium.NoSuchElementException
+### `org.openqa.selenium.NoSuchElementException`
 
-A NoSuchElementException appears when the element you are attempting to find does not satisfy your selector strategy.  
+A `NoSuchElementException` appears when the element you are attempting to find does not satisfy your selector strategy.  
 *Consider the following:*
 
 ```html
@@ -22,7 +22,7 @@ driver.findElement(By.linkText("My Link"));
 driver.findElement(By.linkText("My link")); // lowercase "L"
 ```
 
-### org.openqa.selenium.StaleElementReferenceException
+### `org.openqa.selenium.StaleElementReferenceException`
 
 A StaleReferenceException is thrown when an element that was identified previously has been mutated in the DOM and you attempted to interact with it after the mutation.  
 *Consider the following:*

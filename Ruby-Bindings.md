@@ -80,7 +80,7 @@ element.send_keys :space
 element.text
 ```
 
-Advanced user interactions (see [ActionBuilder](http://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/ActionBuilder.html)):
+Advanced user interactions (see [`ActionBuilder`](http://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/ActionBuilder.html)):
 
 ```ruby
 driver.action.key_down(:shift).
@@ -122,12 +122,12 @@ options.add_preference(:download, prefs)
 driver = Selenium::WebDriver.for :chrome, options: options
 ```
 
-See [ChromeDriver documentation](https://sites.google.com/a/chromium.org/chromedriver/home).
+See [`ChromeDriver` documentation](https://sites.google.com/a/chromium.org/chromedriver/home).
 
 
 ## Remote
 
-The RemoteWebDriver makes it easy to control a browser running on another machine. Download the Selenium
+The `RemoteWebDriver` makes it easy to control a browser running on another machine. Download the Selenium
 Standalone Server (from [Downloads](http://www.seleniumhq.org/download/)) and launch:
 
 `java -jar selenium-server-standalone.jar`
@@ -138,13 +138,13 @@ Then connect to it from Ruby
 driver = Selenium::WebDriver.for :remote
 ```
 
-By default, this connects to the server running on localhost:4444 and opens Chrome. To connect to another machine, use the `:url` option:
+By default, this connects to the server running on `localhost:4444` and opens Chrome. To connect to another machine, use the `:url` option:
 
 ```ruby
 driver = Selenium::WebDriver.for :remote, url: "http://myserver:4444/wd/hub"
 ```
 
-To launch another browser with the default capabilities, use the :desired_capabilities option:
+To launch another browser with the default capabilities, use the `:desired_capabilities` option:
 
 ```ruby
 driver = Selenium::WebDriver.for :remote, desired_capabilities: :firefox
@@ -189,14 +189,14 @@ For the remote Firefox driver you can configure the profile, see the section [Tw
 
 ## Firefox
 
-Ruby currently includes support for Legacy FirefoxDriver (used in Firefox versions < 48), and the new [geckodriver](https://github.com/mozilla/geckodriver#readme). As of Selenium 3.x, Geckodriver is the default implementation. If you want to use the Legacy Driver with an older version of Firefox you can do:
+Ruby currently includes support for Legacy `FirefoxDriver` (used in Firefox versions < 48), and the new [`geckodriver`](https://github.com/mozilla/geckodriver#readme). As of Selenium 3.x, `Geckodriver` is the default implementation. If you want to use the Legacy Driver with an older version of Firefox you can do:
 
 ```ruby
 capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(marionette: false)
 Selenium::WebDriver.for :firefox, desired_capabilities: capabilities
 ```
 
-Both implementations allow you configure the profile used. The examples below, however, are for GeckoDriver.
+Both implementations allow you configure the profile used. The examples below, however, are for `GeckoDriver`.
 
 ### Adding an extension
 
@@ -220,7 +220,7 @@ driver = Selenium::WebDriver.for :firefox, options: options
 
 If you want to use your default profile, pass `profile = "default"`
 
-You can also get a Profile instance for an existing profile and tweak its preferences. This does not modify the existing profile, only the one used by WebDriver.
+You can also get a `Profile` instance for an existing profile and tweak its preferences. This does not modify the existing profile, only the one used by WebDriver.
 
 ```ruby
 default_profile = Selenium::WebDriver::Firefox::Profile.from_name "default"
@@ -286,7 +286,7 @@ profile.secure_ssl = true
 driver = Selenium::WebDriver.for :firefox, profile: profile
 ```
 
-geckodriver will not implicitly trust untrusted or self-signed TLS certificates on navigation. To override this you can do:
+`geckodriver` will not implicitly trust untrusted or self-signed TLS certificates on navigation. To override this you can do:
 
 ```ruby
 capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(accept_insecure_certs: true)
@@ -296,7 +296,7 @@ driver = Selenium::WebDriver.for :firefox, desired_capabilities: capabilities
 
 ## Safari
 
-As of 3.0, the only supported safari driver is the one [maintained by Apple](https://webkit.org/blog/6900/webdriver-support-in-safari-10/). It requires Safari 10 or greater; support for earlier versions of Safari has been removed.
+As of 3.0, the only supported Safari driver is the one [maintained by Apple](https://webkit.org/blog/6900/webdriver-support-in-safari-10/). It requires Safari 10 or greater; support for earlier versions of Safari has been removed.
 
 ```ruby
 driver = Selenium::WebDriver.for :safari
@@ -326,7 +326,7 @@ WebDriver lets you configure implicit waits, so that a call to `#find_element` w
 
 ### Explicit waits
 
-Use the Wait class to explicitly wait for some condition:
+Use the `Wait` class to explicitly wait for some condition:
 
 ```ruby
   wait = Selenium::WebDriver::Wait.new(timeout: 3)
@@ -335,7 +335,7 @@ Use the Wait class to explicitly wait for some condition:
 
 ### Internal timeouts
 
-Internally, WebDriver uses HTTP to communicate with a lot of the drivers (the JsonWireProtocol). By default, `Net::HTTP` from Ruby's standard library is used, which has a default timeout of 60 seconds. If you call e.g. `Driver#get`, `Driver#click` on a page that takes more than 60 seconds to load, you'll see a `Timeout::Error` raised from `Net::HTTP`. You can configure this timeout (before launching a browser) by doing:
+Internally, WebDriver uses HTTP to communicate with a lot of the drivers (the `JsonWireProtocol`). By default, `Net::HTTP` from Ruby's standard library is used, which has a default timeout of 60 seconds. If you call e.g. `Driver#get`, `Driver#click` on a page that takes more than 60 seconds to load, you'll see a `Timeout::Error` raised from `Net::HTTP`. You can configure this timeout (before launching a browser) by doing:
 
 ```ruby
   client = Selenium::WebDriver::Remote::Http::Default.new
@@ -366,7 +366,7 @@ end
 
 ## Using Curb or your own HTTP client
 
-For internal HTTP communication, `Net::HTTP` is used by default. If you e.g. have the [Curb gem](https://rubygems.org/gems/curb) installed, you can switch to it by doing:
+For internal HTTP communication, `Net::HTTP` is used by default. If you have the [`Curb` gem](https://rubygems.org/gems/curb) installed, you can switch to it by doing:
 
 ```ruby
 require 'selenium/webdriver/remote/http/curb'
@@ -377,7 +377,7 @@ driver = Selenium::WebDriver.for :firefox, http_client: client
 
 ## Using persistent HTTP connections
 
-If you have the [net-http-persistent gem](https://github.com/drbrain/net-http-persistent) installed, you can use it to get keep-alive connections. This will significantly reduce the ephemeral ports usage of WebDriver, which is useful in [some contexts](ScalingWebDriver.md). Keep-alive connections are also supported in ChromeDriver.
+If you have the [`net-http-persistent` gem](https://github.com/drbrain/net-http-persistent) installed, you can use it to get `keep-alive` connections. This will significantly reduce the ephemeral ports usage of WebDriver, which is useful in [some contexts](ScalingWebDriver.md). `Keep-alive` connections are also supported in `ChromeDriver`.
 
 ```ruby
 require 'selenium/webdriver/remote/http/persistent'

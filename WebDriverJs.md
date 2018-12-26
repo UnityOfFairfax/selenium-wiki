@@ -47,13 +47,15 @@ driver.get('http://www.google.com/ncr').then(() => debugger);
 driver.findElement(By.name('q')).sendKeys('webdriver');
 ```
 
-JavaScript has evolved in many ways since WebDriverJS was originally created. Not only did the community standardize the behavior and API for promises, but promises were added to the language itself. The next version of JavaScript, ES2017, adds support for [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), greatly simplyfing the process of writing and maintaining asynchronous code. At this point, the benefits of the promise manager no longer outweigh its costs, so it will [soon be deprecated](https://github.com/SeleniumHQ/selenium/issues/2969) and removed from WebDriverJS. The remainder of this guide will explain how users can migrate off the promise manager and effectively use the async constructs available today.
+JavaScript has evolved in many ways since WebDriverJS was originally created. Not only did the community standardize the behavior and API for promises, but promises were added to the language itself. The next version of JavaScript, ES2017, adds support for [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), greatly simplyfing the process of writing and maintaining asynchronous code. At this point, the benefits of the promise manager no longer outweigh its costs, so it will [soon be deprecated](https://github.com/SeleniumHQ/selenium/issues/2969) and removed from WebDriverJS. 
 
-## Moving to async/await
+The remainder of this guide will explain how users can migrate off the promise manager and effectively use the `async` constructs available today.
+
+## Moving to `async`/`await`
 
 ### Step 1: Disabling the Promise Manager
 
-As outlined in [issue 2969](https://github.com/SeleniumHQ/selenium/issues/2969), WebDriverJS' promise manager will be deprecated and disabled by default with the first [Node LTS](https://github.com/nodejs/LTS#lts-schedule) release that includes native support for async functions. This feature is currently available in Node 7.x, hidden behind the `--harmony_async_await` flag.
+As outlined in [Issue 2969](https://github.com/SeleniumHQ/selenium/issues/2969), WebDriverJS' promise manager will be deprecated and disabled by default with the first [Node LTS](https://github.com/nodejs/LTS#lts-schedule) release that includes native support for async functions. This feature is currently available in Node 7.x, hidden behind the `--harmony_async_await` flag.
 
 Instead of waiting for the LTS, you can disable the promise manager today either by setting an environment variable, `SELENIUM_PROMISE_MANAGER=0`, or through the promise module's API ([`promise.USE_PROMISE_MANAGER = false`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#USE_PROMISE_MANAGER)).
 
@@ -65,9 +67,9 @@ Search your code for every instance where you create a `promise.Promise` object,
 
 | Original | Replacement |
 | -------- | ----------- |
-| [new promise.Promise()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html) | [promise.createPromise()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#createPromise) |
-| [promise.Promise.resolve()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html#Promise.resolve) | [promise.fulfilled()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#fulfilled) |
-| [promise.Promise.reject()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html#Promise.reject) | [promise.rejected()](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#rejected) |
+| [`new promise.Promise()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html) | [`promise.createPromise()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#createPromise) |
+| [`promise.Promise.resolve()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html#Promise.resolve) | [`promise.fulfilled()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#fulfilled) |
+| [`promise.Promise.reject()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise_exports_Promise.html#Promise.reject) | [`promise.rejected()`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/promise.html#rejected) |
 
 ### Step 3: Migrate Off of the Promise Manager
 
@@ -167,11 +169,11 @@ The advantage to using generators with `selenium-webdriver/testing` is your code
 
 The [`selenium-webdriver/example`](https://github.com/SeleniumHQ/selenium/blob/master/javascript/node/selenium-webdriver/example/google_search_test.js) directory contains an example of our Google Search test written with and without generators so you can compare the two side-by-side.
 
-#### Option 3: Migrate to async/await
+#### Option 3: Migrate to `async`/`await`
 
-Your final option is to switch to async/await. As mentioned above, these language features are currently hidden behind a flag in Node 7, so you will have to run with `--harmony_async_await` _or_ you will have to transpile your code with [Babel](https://babeljs.io/) (setting up Babel is left as an exercise for the reader).
+Your final option is to switch to `async`/`await`. As mentioned above, these language features are currently hidden behind a flag in Node 7, so you will have to run with `--harmony_async_await` _or_ you will have to transpile your code with [Babel](https://babeljs.io). (Setting up Babel is left as an exercise for the reader.)
 
-Compared to generators, there is one more catch to using async/await: they [do not play well with the promise manager](https://github.com/SeleniumHQ/selenium/issues/3037), so you must ensure the promise manager is disabled. There is a complete working example of a test written using async/await provided in the [`selenium-webdriver/example`](https://github.com/SeleniumHQ/selenium/blob/master/javascript/node/selenium-webdriver/example/async_await_test.js) directory:
+Compared to generators, there is one more catch to using `async`/`await`: they [do not play well with the promise manager](https://github.com/SeleniumHQ/selenium/issues/3037), so you must ensure the promise manager is disabled. There is a complete working example of a test written using `async`/`await` provided in the [`selenium-webdriver/example`](https://github.com/SeleniumHQ/selenium/blob/master/javascript/node/selenium-webdriver/example/async_await_test.js) directory:
 
 ```js
 const {Builder, By, until} = require('selenium-webdriver');
@@ -200,7 +202,7 @@ describe('Google Search', function() {
 });
 ```
 
-This example disables the promise manager globally. In order to migrate tests bit-by-bit, you can selectively disable the promise manager in before/after blocks:
+This example disables the promise manager globally. In order to migrate tests bit-by-bit, you can selectively disable the promise manager in `before`/`after` blocks:
 
 ```js
 promise.USE_PROMISE_MANAGER = false;
@@ -235,7 +237,7 @@ While the promise manager can be easily toggled through an enviornment variable,
 
 Enabling logging is only two extra lines:
 
-```
+```js
 const {Builder, By, logging, until} = require('selenium-webdriver');
 
 logging.installConsoleHandler();

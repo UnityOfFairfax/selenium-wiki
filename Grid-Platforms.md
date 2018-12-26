@@ -1,6 +1,6 @@
 # Selenium Grid Platforms
 
-This section describes the PLATFORM option used in configuring Selenium Grid Nodes and [[DesiredCapabilities](DesiredCapabilities)] object.
+This section describes the `PLATFORM` option used in configuring Selenium Grid Nodes and [[DesiredCapabilities](DesiredCapabilities)] object.
 
 ## History of Platforms
 
@@ -8,7 +8,7 @@ When requesting a new WebDriver session from the Grid, user can specify the [[De
 
 The following code demonstrates the DesiredCapability of Internet Explorer, version 9, on Windows XP platform:
 
-```
+```java
 	[[DesiredCapabilities]] capability = DesiredCapabilities.internetExplorer();
 	capability.setVersion("8");
 	capability.setPlatform(Platform.XP);
@@ -21,32 +21,32 @@ It is a common misconception that the PLATFORM determines the ability to choose 
 
 In case of Selenium Grid, platform refers to the underlying interactions between the Driver Atoms and the web browser. Mac OSX and Linux based Operating Systems (Centos, Ubuntu, Debian, etc..) have a relatively stable communication with the web browsers such as Firefox and Chrome. Thus the platform names are simple to understand, as seen in the example bellow:
 
-```
+```java
    capability.setPlatform(Platform.MAC);   //Set platform to OSX
    capability.setPlatform(Platform.LINUX); // Set platform to Linux based systems
 ```
 
 The prior to release of Vista, Windows based Operating Systems only had one platform, shown here:
 
-```
+```java
 	capability.setPlatform(Platform.WINDOWS); //Set platform to Windows
 ```
 
 However, with the introduction of UAC in Windows Vista, there were major changes done to the underlying interactions between WebDriver and Internet Explorer. To work around the UAC constrains a new platform was added to nodes with Windows based Operating systems:
 
-```
+```java
 	capability.setPlatform(Platform.VISTA); //Set platform to VISTA
 ```
 
 With the release of Windows 8, another major overhaul happened in how the WebDriver communicates with Internet Explorer, thus a new platform was added for Windows 8 based nodes:
 
-```
+```java
 	capability.setPlatform(Platform.WIN8); //Set platform to Windows 8
 ```
 
 Similar story happened with introduction of Windows 8.1, in this example the platform is set to Windows 8.1:
 
-```
+```java
 	capability.setPlatform(Platform.WIN8_1); //Set platform to Windows 8.1
 ```
 
@@ -72,7 +72,7 @@ Different platforms are grouped into "Families" of platform. For example, Win8 a
 ## Choosing Platform and Platform Family
 When setting a platform on the [[DesiredCapabilities](DesiredCapabilities)] object, we can set an individual platform or family of platforms. For example:
 
-```
+```java
   	capability.setPlatform(Platform.VISTA); //Will return a node with Windows Vista or 2008 Server or Windows 7 Operating System.
   	capability.setPlatform(Platform.XP);   //Will return a node with Windows XP or 2003 Server or Windows 2000 Professional Operating System.   
   	capability.setPlatform(Platform.WINDOWS); //Will return a node with ANY Windows Operating System
@@ -82,4 +82,4 @@ When setting a platform on the [[DesiredCapabilities](DesiredCapabilities)] obje
 ## More Information
 For more information on the latest platforms, please view this file:
 
-org.openqa.selenium.Platform.java
+`org.openqa.selenium.Platform.java`

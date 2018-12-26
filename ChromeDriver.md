@@ -1,10 +1,16 @@
-Developed in collaboration with the Chromium team, [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/) is a standalone server which implements WebDriver's  [wire protocol](JsonWireProtocol.md).
+Developed in collaboration with the Chromium team, [`ChromeDriver`](https://sites.google.com/a/chromium.org/chromedriver/) is a standalone server which implements WebDriver's  [wire protocol](JsonWireProtocol.md).
 
 ## [Visit the full ChromeDriver site](https://sites.google.com/a/chromium.org/chromedriver/)
 
 ## [View all ChromeDriver downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
-The ChromeDriver consists of three separate pieces. There is the browser itself ("chrome"), the language bindings provided by the Selenium project ("the driver") and an executable downloaded from the Chromium project which acts as a bridge between "chrome" and the "driver". This executable is called "chromedriver", but we'll try and refer to it as the "server" in this page to reduce confusion.
+The `ChromeDriver` consists of three separate pieces. 
+
+1. There is the browser itself ("chrome"),
+1. the language bindings provided by the Selenium project ("the driver"), and 
+1. an executable downloaded from the Chromium project which acts as a bridge between "chrome" and the "driver". 
+
+This executable is called `chromedriver`, but we'll try and refer to it as the <dfn>server</dfn> in this page to reduce confusion.
 
 ## Requirements
 
@@ -12,12 +18,12 @@ The server expects you to have Chrome installed in the default location for each
 
 | **OS** | **Expected Location of Chrome** |
 |:-------|:--------------------------------|
-| Linux  | /usr/bin/google-chrome<sup>1</sup> |
-| Mac    | /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome |
-| Windows XP | %HOMEPATH%\Local Settings\Application Data\Google\Chrome\Application\chrome.exe |
-| Windows Vista | C:\Users\%USERNAME%\AppData\Local\Google\Chrome\Application\chrome.exe |
+| Linux  | `/usr/bin/google-chrome`<sup>1</sup> |
+| Mac    | `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome` |
+| Windows XP | `%HOMEPATH%\Local Settings\Application Data\Google\Chrome\Application\chrome.exe` |
+| Windows Vista | `C:\Users\%USERNAME%\AppData\Local\Google\Chrome\Application\chrome.exe` |
 
-<sup>1</sup> For Linux systems, the ChromeDriver expects /usr/bin/google-chrome to be a symlink to the actual Chrome binary. See also the section on [overriding the Chrome binary location](https://sites.google.com/a/chromium.org/chromedriver/capabilities#TOC-Using-a-Chrome-executable-in-a-non-standard-location) .
+<sup>1</sup> For Linux systems, the `ChromeDriver` expects `/usr/bin/google-chrome` to be a symlink to the actual Chrome binary. See also the section on [overriding the Chrome binary location](https://sites.google.com/a/chromium.org/chromedriver/capabilities#TOC-Using-a-Chrome-executable-in-a-non-standard-location) .
 
 ## Quick installation
 
@@ -31,8 +37,9 @@ The server expects you to have Chrome installed in the default location for each
 
 ### Running ChromeDriver as a standalone process
 
-Since the ChromeDriver implements the wire protocol, it is fully compatible with any RemoteWebDriver client. Simply start up the ChromeDriver executable (that works as a server), create a client, and away you go:
-```
+Since the `ChromeDriver` implements the wire protocol, it is fully compatible with any RemoteWebDriver client. Simply start up the `ChromeDriver` executable (that works as a server), create a client, and away you go:
+
+```java
 WebDriver driver = new RemoteWebDriver("http://localhost:9515", DesiredCapabilities.chrome());
 driver.get("http://www.google.com");
 ```
@@ -41,8 +48,8 @@ driver.get("http://www.google.com");
 
 If you are using the RemoteWebDriver and you get the _The path to the chromedriver executable must be set by the webdriver.chrome.driver system property_ error message you likely need to check that one of these conditions is met:
 
-  * The chromedriver binary is in the system path, or
-  * The Selenium Server was started with -Dwebdriver.chrome.driver=c:\path\to\your\chromedriver.exe
+  * The `chromedriver` binary is in the system <var>PATH</var>, or
+  * The Selenium Server was started with `-Dwebdriver.chrome.driver=c:\path\to\your\chromedriver.exe`
 
 [ChromeDriver user documentation](https://sites.google.com/a/chromium.org/chromedriver/home) provides more information on the known issues and workarounds.
 
@@ -60,8 +67,9 @@ Of course, if your bug has already been reported, you can update the issue with 
 
 ## Testing earlier versions of Chrome
 
-ChromeDriver is only compatible with Chrome version 12.0.712.0 or newer. If you need to test an older version of Chrome, use Selenium RC  and a Selenium-backed WebDriver instance:
-```
+`ChromeDriver` is only compatible with Chrome version 12.0.712.0 or newer. If you need to test an older version of Chrome, use Selenium RC  and a Selenium-backed WebDriver instance:
+
+```java
 URL seleniumServerUrl = new URL("http://localhost:4444");
 URL serverUnderTest = new URL("http://www.google.com");
 CommandExecutor executor = new SeleneseCommandExecutor(seleniumServerUrl, serverUnderTest, DesiredCapabilities.chrome());
